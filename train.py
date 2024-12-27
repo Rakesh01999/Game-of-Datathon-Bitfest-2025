@@ -21,12 +21,26 @@ irrelevant_columns = [
     'issue_dates', 'expiry_dates', 'age_requirement'
 ]
 dataset.drop(columns=irrelevant_columns, inplace=True)
-print(dataset.head())  # Confirm columns are dropped
+
+
+# Add Derived Feature
+dataset['skills_length'] = dataset['skills'].apply(lambda x: len(eval(x)) if pd.notnull(x) else 0)
+
+# Check the Dataset After Adding the Feature
+print(dataset.head())
 
 # Handle Missing Values
+# for col in dataset.columns:
+#     if dataset[col].isnull().any():
+#         dataset[col].fillna(dataset[col].mode()[0], inplace=True)
+# Fill Missing Values
 for col in dataset.columns:
     if dataset[col].isnull().any():
-        dataset[col].fillna(dataset[col].mode()[0], inplace=True)
+        if dataset[col].dtype == 'object':
+            dataset[col] = dataset[col].fillna(dataset[col].mode()[0])
+        else:
+            dataset[col] = dataset[col].fillna(dataset[col].mean())
+
 print(dataset.isnull().sum())  # Check remaining missing values
 
 # Define Features and Target
@@ -92,6 +106,7 @@ dataset['skills_count'] = dataset['skills'].apply(lambda x: len(eval(x)) if pd.n
 dataset.fillna({'skills': '[]'}, inplace=True)
 # Debugging Warnings:
 dataset.loc[:, 'skills'] = dataset['skills'].fillna('[]')
+
 # Train-Test Split:
 # ...
 
@@ -119,3 +134,5 @@ y = dataset['matched_score']
 # Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 print("Shapes -> X_train:", X_train.shape, "y_train:", y_train.shape)
+
+
