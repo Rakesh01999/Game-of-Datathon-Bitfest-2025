@@ -23,3 +23,9 @@ irrelevant_columns = [
 dataset.drop(columns=irrelevant_columns, inplace=True)
 print(dataset.head())  # Confirm columns are dropped
 
+# Handle Missing Values
+for col in dataset.columns:
+    if dataset[col].isnull().any():
+        dataset[col].fillna(dataset[col].mode()[0], inplace=True)
+print(dataset.isnull().sum())  # Check remaining missing values
+
