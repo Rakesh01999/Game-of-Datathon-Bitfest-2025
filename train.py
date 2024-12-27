@@ -29,3 +29,10 @@ for col in dataset.columns:
         dataset[col].fillna(dataset[col].mode()[0], inplace=True)
 print(dataset.isnull().sum())  # Check remaining missing values
 
+# Define Features and Target
+target_column = 'matched_score'
+X = dataset.drop(columns=[target_column])
+y = dataset[target_column]
+
+print("Features:", X.head())
+print("Target:", y.head())
