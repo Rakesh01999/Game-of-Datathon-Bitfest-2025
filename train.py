@@ -43,3 +43,18 @@ numerical_columns = X.select_dtypes(include=['number']).columns
 print("Object Columns:", object_columns)
 print("Numerical Columns:", numerical_columns)
 
+# Define preprocessors:
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
+])
+numerical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='mean')),
+    ('scaler', RobustScaler())
+])
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numerical_transformer, numerical_columns),
+        ('cat', categorical_transformer, object_columns)
+    ])
+
