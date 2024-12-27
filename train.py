@@ -74,3 +74,48 @@ y_pred = base_model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error (Base Model):", mse)
 
+
+# Corrected GridSearchCV Block
+# 1. Data Quality Issues
+# Check for Null or NaN Values: 
+print(dataset.isnull().sum())
+# Steps to Resolve the Issue:
+# Check Data Types of Columns:
+numeric_columns = dataset.select_dtypes(include=['number']).columns
+print(numeric_columns)
+# Filter Numeric Columns: Use the numeric columns for .var():
+numeric_data = dataset[numeric_columns]
+print(numeric_data.var())
+# Handle String Columns: 
+dataset['skills_count'] = dataset['skills'].apply(lambda x: len(eval(x)) if pd.notnull(x) else 0)
+# Fill or Remove Missing Data
+dataset.fillna({'skills': '[]'}, inplace=True)
+# Debugging Warnings:
+dataset.loc[:, 'skills'] = dataset['skills'].fillna('[]')
+# Train-Test Split:
+# ...
+
+print(dataset.columns)
+print("Columns after dropping irrelevant ones:", dataset.columns)
+if 'matched_score' in dataset.columns:
+    print(dataset['matched_score'].head())
+else:
+    print("Target column 'matched_score' is missing!")
+print(dataset['matched_score'].isnull().sum())
+target_column = 'matched_score'  # Use exact column name from dataset
+
+
+# Ensure Target Column Exists
+assert 'matched_score' in dataset.columns, "Target column 'matched_score' is missing!"
+
+# Check Numeric Columns
+numeric_columns = dataset.select_dtypes(include=['number']).columns
+print("Numeric Columns:", numeric_columns)
+
+# Split Data
+X = dataset[numeric_columns].drop(columns=['matched_score'], errors='ignore')  # Avoid KeyError
+y = dataset['matched_score']
+
+# Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+print("Shapes -> X_train:", X_train.shape, "y_train:", y_train.shape)
