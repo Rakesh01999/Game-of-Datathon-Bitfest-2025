@@ -62,3 +62,15 @@ preprocessor = ColumnTransformer(
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 print("Train Size:", X_train.shape)
 print("Test Size:", X_test.shape)
+
+# Create Base Model
+base_model = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LGBMRegressor(random_state=42))
+])
+base_model.fit(X_train, y_train)
+
+y_pred = base_model.predict(X_test)
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error (Base Model):", mse)
+
