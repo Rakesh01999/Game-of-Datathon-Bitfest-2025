@@ -1,0 +1,414 @@
+  address                                   career_objective  \
+0     NaN  Big data analytics working and database wareho...   
+1     NaN  Fresher looking to join as a data analyst and ...   
+2     NaN                                                NaN   
+3     NaN  To obtain a position in a fast-paced business ...   
+4     NaN  Professional accountant with an outstanding wo...   
+
+                                              skills  \
+0  ['Big Data', 'Hadoop', 'Hive', 'Python', 'Mapr...   
+1  ['Data Analysis', 'Data Analytics', 'Business ...   
+2  ['Software Development', 'Machine Learning', '...   
+3  ['accounts payables', 'accounts receivables', ...   
+4  ['Analytical reasoning', 'Compliance testing k...   
+
+                        educational_institution_name  \
+0  ['The Amity School of Engineering & Technology...   
+1  ['Delhi University - Hansraj College', 'Delhi ...   
+2    ['Birla Institute of Technology (BIT), Ranchi']   
+3  ['Martinez Adult Education, Business Training ...   
+4                          ['Kent State University']   
+
+                                        degree_names     passing_years  \
+0                                         ['B.Tech']          ['2019']   
+1    ['B.Sc (Maths)', 'M.Sc (Science) (Statistics)']  ['2015', '2018']   
+2                                         ['B.Tech']          ['2018']   
+3  ['Computer Applications Specialist Certificate...          ['2008']   
+4            ['Bachelor of Business Administration']            [None]   
+
+  educational_results    result_types             major_field_of_studies  \
+0             ['N/A']          [None]                    ['Electronics']   
+1      ['N/A', 'N/A']  ['N/A', 'N/A']      ['Mathematics', 'Statistics']   
+2             ['N/A']         ['N/A']  ['Electronics/Telecommunication']   
+3              [None]          [None]          ['Computer Applications']   
+4            ['3.84']          [None]                     ['Accounting']   
+
+                          professional_company_names  ... online_links  \
+0                                      ['Coca-COla']  ...          NaN   
+1                                ['BIB Consultancy']  ...          NaN   
+2                              ['Axis Bank Limited']  ...          NaN   
+3  ['Company Name ï¼ City , State', 'Company Name...  ...          NaN   
+4  ['Company Name', 'Company Name', 'Company Name...  ...       [None]   
+
+  issue_dates           expiry_dates  \
+0         NaN                    NaN   
+1         NaN                    NaN   
+2         NaN                    NaN   
+3         NaN                    NaN   
+4      [None]  ['February 15, 2021']   
+
+                                  ﻿job_position_name  \
+0                           Senior Software Engineer   
+1                     Machine Learning (ML) Engineer   
+2  Executive/ Senior Executive- Trade Marketing, ...   
+3                     Business Development Executive   
+4                                Senior iOS Engineer   
+
+                            educationaL_requirements experiencere_requirement  \
+0  B.Sc in Computer Science & Engineering from a ...          At least 1 year   
+1  M.Sc in Computer Science & Engineering or in a...       At least 5 year(s)   
+2            Master of Business Administration (MBA)         At least 3 years   
+3                                    Bachelor/Honors             1 to 3 years   
+4      Bachelor of Science (BSc) in Computer Science         At least 4 years   
+
+      age_requirement                                 responsibilities.1  \
+0                 NaN  Technical Support\nTroubleshooting\nCollaborat...   
+1                 NaN  Machine Learning Leadership\nCross-Functional ...   
+2                 NaN  Trade Marketing Executive\nBrand Visibility, S...   
+3  Age 22 to 30 years  Apparel Sourcing\nQuality Garment Sourcing\nRe...   
+4                 NaN  iOS Lifecycle\nRequirement Analysis\nNative Fr...   
+
+                                     skills_required matched_score  
+0                                                NaN      0.850000  
+1                                                NaN      0.750000  
+2  Brand Promotion\nCampaign Management\nField Su...      0.416667  
+3  Fast typing skill\nIELTSInternet browsing & on...      0.760000  
+4  iOS\niOS App Developer\niOS Application Develo...      0.650000  
+
+[5 rows x 35 columns]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 7635 entries, 0 to 7634
+Data columns (total 35 columns):
+ #   Column                               Non-Null Count  Dtype  
+---  ------                               --------------  -----  
+ 0   address                              633 non-null    object 
+ 1   career_objective                     3794 non-null   object 
+ 2   skills                               7592 non-null   object 
+ 3   educational_institution_name         7574 non-null   object 
+ 4   degree_names                         7574 non-null   object 
+ 5   passing_years                        7574 non-null   object 
+ 6   educational_results                  7574 non-null   object 
+ 7   result_types                         7574 non-null   object 
+ 8   major_field_of_studies               7574 non-null   object 
+ 9   professional_company_names           7568 non-null   object 
+ 10  company_urls                         7568 non-null   object 
+ 11  start_dates                          7568 non-null   object 
+ 12  end_dates                            7568 non-null   object 
+ 13  related_skils_in_job                 7568 non-null   object 
+ 14  positions                            7568 non-null   object 
+ 15  locations                            7568 non-null   object 
+ 16  responsibilities                     7635 non-null   object 
+ 17  extra_curricular_activity_types      2732 non-null   object 
+ 18  extra_curricular_organization_names  2732 non-null   object 
+ 19  extra_curricular_organization_links  2732 non-null   object 
+ 20  role_positions                       2732 non-null   object 
+ 21  languages                            569 non-null    object 
+ 22  proficiency_levels                   569 non-null    object 
+ 23  certification_providers              1587 non-null   object 
+ 24  certification_skills                 1587 non-null   object 
+ 25  online_links                         1587 non-null   object 
+ 26  issue_dates                          1587 non-null   object 
+ 27  expiry_dates                         1587 non-null   object 
+ 28  ﻿job_position_name                   7635 non-null   object 
+ 29  educationaL_requirements             7635 non-null   object 
+ 30  experiencere_requirement             6549 non-null   object 
+ 31  age_requirement                      4371 non-null   object 
+ 32  responsibilities.1                   7635 non-null   object 
+ 33  skills_required                      6264 non-null   object 
+ 34  matched_score                        7635 non-null   float64
+dtypes: float64(1), object(34)
+memory usage: 2.0+ MB
+None
+                                              skills  \
+0  ['Big Data', 'Hadoop', 'Hive', 'Python', 'Mapr...   
+1  ['Data Analysis', 'Data Analytics', 'Business ...   
+2  ['Software Development', 'Machine Learning', '...   
+3  ['accounts payables', 'accounts receivables', ...   
+4  ['Analytical reasoning', 'Compliance testing k...   
+
+                        educational_institution_name  \
+0  ['The Amity School of Engineering & Technology...   
+1  ['Delhi University - Hansraj College', 'Delhi ...   
+2    ['Birla Institute of Technology (BIT), Ranchi']   
+3  ['Martinez Adult Education, Business Training ...   
+4                          ['Kent State University']   
+
+                                        degree_names     passing_years  \
+0                                         ['B.Tech']          ['2019']   
+1    ['B.Sc (Maths)', 'M.Sc (Science) (Statistics)']  ['2015', '2018']   
+2                                         ['B.Tech']          ['2018']   
+3  ['Computer Applications Specialist Certificate...          ['2008']   
+4            ['Bachelor of Business Administration']            [None]   
+
+  educational_results    result_types             major_field_of_studies  \
+0             ['N/A']          [None]                    ['Electronics']   
+1      ['N/A', 'N/A']  ['N/A', 'N/A']      ['Mathematics', 'Statistics']   
+2             ['N/A']         ['N/A']  ['Electronics/Telecommunication']   
+3              [None]          [None]          ['Computer Applications']   
+4            ['3.84']          [None]                     ['Accounting']   
+
+                          professional_company_names  \
+0                                      ['Coca-COla']   
+1                                ['BIB Consultancy']   
+2                              ['Axis Bank Limited']   
+3  ['Company Name ï¼ City , State', 'Company Name...   
+4  ['Company Name', 'Company Name', 'Company Name...   
+
+                           company_urls  \
+0                                [None]   
+1                               ['N/A']   
+2                               ['N/A']   
+3  [None, None, None, None, None, None]   
+4        [None, None, None, None, None]   
+
+                                         start_dates  ...  \
+0                                       ['Nov 2019']  ...   
+1                                       ['Sep 2019']  ...   
+2                                      ['June 2018']  ...   
+3  ['January 2011', 'January 2008', 'January 2006...  ...   
+4  ['January 2016', 'January 2016', 'January 2012...  ...   
+
+                                           positions  \
+0                               ['Big Data Analyst']   
+1                               ['Business Analyst']   
+2  ['Software Developer (Machine Learning Enginee...   
+3  ['Accountant', 'Accounts Receivable Clerk', 'M...   
+4  ['Staff Accountant', 'Senior Accountant', 'Tax...   
+
+                                           locations  \
+0                                            ['N/A']   
+1                                            ['N/A']   
+2                                            ['N/A']   
+3  ['City, State', 'City, State', 'City, State', ...   
+4  ['City, State', 'City, State', 'City, State', ...   
+
+                                    responsibilities  \
+0  Technical Support\nTroubleshooting\nCollaborat...   
+1  Machine Learning Leadership\nCross-Functional ...   
+2  Trade Marketing Executive\nBrand Visibility, S...   
+3  Apparel Sourcing\nQuality Garment Sourcing\nRe...   
+4  iOS Lifecycle\nRequirement Analysis\nNative Fr...   
+
+                                  ﻿job_position_name  \
+0                           Senior Software Engineer   
+1                     Machine Learning (ML) Engineer   
+2  Executive/ Senior Executive- Trade Marketing, ...   
+3                     Business Development Executive   
+4                                Senior iOS Engineer   
+
+                            educationaL_requirements experiencere_requirement  \
+0  B.Sc in Computer Science & Engineering from a ...          At least 1 year   
+1  M.Sc in Computer Science & Engineering or in a...       At least 5 year(s)   
+2            Master of Business Administration (MBA)         At least 3 years   
+3                                    Bachelor/Honors             1 to 3 years   
+4      Bachelor of Science (BSc) in Computer Science         At least 4 years   
+
+                                  responsibilities.1  \
+0  Technical Support\nTroubleshooting\nCollaborat...   
+1  Machine Learning Leadership\nCross-Functional ...   
+2  Trade Marketing Executive\nBrand Visibility, S...   
+3  Apparel Sourcing\nQuality Garment Sourcing\nRe...   
+4  iOS Lifecycle\nRequirement Analysis\nNative Fr...   
+
+                                     skills_required matched_score  \
+0  ASP.NET MVC Strong understanding of database d...      0.850000   
+1  ASP.NET MVC Strong understanding of database d...      0.750000   
+2  Brand Promotion\nCampaign Management\nField Su...      0.416667   
+3  Fast typing skill\nIELTSInternet browsing & on...      0.760000   
+4  iOS\niOS App Developer\niOS Application Develo...      0.650000   
+
+  skills_length  
+0            21  
+1            10  
+2            14  
+3            36  
+4            32  
+
+[5 rows x 22 columns]
+skills                          0
+educational_institution_name    0
+degree_names                    0
+passing_years                   0
+educational_results             0
+result_types                    0
+major_field_of_studies          0
+professional_company_names      0
+company_urls                    0
+start_dates                     0
+end_dates                       0
+related_skils_in_job            0
+positions                       0
+locations                       0
+responsibilities                0
+﻿job_position_name              0
+educationaL_requirements        0
+experiencere_requirement        0
+responsibilities.1              0
+skills_required                 0
+matched_score                   0
+skills_length                   0
+dtype: int64
+Features:                                               skills  \
+0  ['Big Data', 'Hadoop', 'Hive', 'Python', 'Mapr...   
+1  ['Data Analysis', 'Data Analytics', 'Business ...   
+2  ['Software Development', 'Machine Learning', '...   
+3  ['accounts payables', 'accounts receivables', ...   
+4  ['Analytical reasoning', 'Compliance testing k...   
+
+                        educational_institution_name  \
+0  ['The Amity School of Engineering & Technology...   
+1  ['Delhi University - Hansraj College', 'Delhi ...   
+2    ['Birla Institute of Technology (BIT), Ranchi']   
+3  ['Martinez Adult Education, Business Training ...   
+4                          ['Kent State University']   
+
+                                        degree_names     passing_years  \
+0                                         ['B.Tech']          ['2019']   
+1    ['B.Sc (Maths)', 'M.Sc (Science) (Statistics)']  ['2015', '2018']   
+2                                         ['B.Tech']          ['2018']   
+3  ['Computer Applications Specialist Certificate...          ['2008']   
+4            ['Bachelor of Business Administration']            [None]   
+
+  educational_results    result_types             major_field_of_studies  \
+0             ['N/A']          [None]                    ['Electronics']   
+1      ['N/A', 'N/A']  ['N/A', 'N/A']      ['Mathematics', 'Statistics']   
+2             ['N/A']         ['N/A']  ['Electronics/Telecommunication']   
+3              [None]          [None]          ['Computer Applications']   
+4            ['3.84']          [None]                     ['Accounting']   
+
+                          professional_company_names  \
+0                                      ['Coca-COla']   
+1                                ['BIB Consultancy']   
+2                              ['Axis Bank Limited']   
+3  ['Company Name ï¼ City , State', 'Company Name...   
+4  ['Company Name', 'Company Name', 'Company Name...   
+
+                           company_urls  \
+0                                [None]   
+1                               ['N/A']   
+2                               ['N/A']   
+3  [None, None, None, None, None, None]   
+4        [None, None, None, None, None]   
+
+                                         start_dates  ...  \
+0                                       ['Nov 2019']  ...   
+1                                       ['Sep 2019']  ...   
+2                                      ['June 2018']  ...   
+3  ['January 2011', 'January 2008', 'January 2006...  ...   
+4  ['January 2016', 'January 2016', 'January 2012...  ...   
+
+                                related_skils_in_job  \
+0                                     [['Big Data']]   
+1  [['Data Analysis', 'Business Analysis', 'Machi...   
+2  [['Unified Payment Interface', 'Risk Predictio...   
+3  [['accounts receivables', 'banking', 'G/L Acco...   
+4  [['collections', 'accounts receivable', 'finan...   
+
+                                           positions  \
+0                               ['Big Data Analyst']   
+1                               ['Business Analyst']   
+2  ['Software Developer (Machine Learning Enginee...   
+3  ['Accountant', 'Accounts Receivable Clerk', 'M...   
+4  ['Staff Accountant', 'Senior Accountant', 'Tax...   
+
+                                           locations  \
+0                                            ['N/A']   
+1                                            ['N/A']   
+2                                            ['N/A']   
+3  ['City, State', 'City, State', 'City, State', ...   
+4  ['City, State', 'City, State', 'City, State', ...   
+
+                                    responsibilities  \
+0  Technical Support\nTroubleshooting\nCollaborat...   
+1  Machine Learning Leadership\nCross-Functional ...   
+2  Trade Marketing Executive\nBrand Visibility, S...   
+3  Apparel Sourcing\nQuality Garment Sourcing\nRe...   
+4  iOS Lifecycle\nRequirement Analysis\nNative Fr...   
+
+                                  ﻿job_position_name  \
+0                           Senior Software Engineer   
+1                     Machine Learning (ML) Engineer   
+2  Executive/ Senior Executive- Trade Marketing, ...   
+3                     Business Development Executive   
+4                                Senior iOS Engineer   
+
+                            educationaL_requirements experiencere_requirement  \
+0  B.Sc in Computer Science & Engineering from a ...          At least 1 year   
+1  M.Sc in Computer Science & Engineering or in a...       At least 5 year(s)   
+2            Master of Business Administration (MBA)         At least 3 years   
+3                                    Bachelor/Honors             1 to 3 years   
+4      Bachelor of Science (BSc) in Computer Science         At least 4 years   
+
+                                  responsibilities.1  \
+0  Technical Support\nTroubleshooting\nCollaborat...   
+1  Machine Learning Leadership\nCross-Functional ...   
+2  Trade Marketing Executive\nBrand Visibility, S...   
+3  Apparel Sourcing\nQuality Garment Sourcing\nRe...   
+4  iOS Lifecycle\nRequirement Analysis\nNative Fr...   
+
+                                     skills_required skills_length  
+0  ASP.NET MVC Strong understanding of database d...            21  
+1  ASP.NET MVC Strong understanding of database d...            10  
+2  Brand Promotion\nCampaign Management\nField Su...            14  
+3  Fast typing skill\nIELTSInternet browsing & on...            36  
+4  iOS\niOS App Developer\niOS Application Develo...            32  
+
+[5 rows x 21 columns]
+Target: 0    0.850000
+1    0.750000
+2    0.416667
+3    0.760000
+4    0.650000
+Name: matched_score, dtype: float64
+Object Columns: Index(['skills', 'educational_institution_name', 'degree_names',
+       'passing_years', 'educational_results', 'result_types',
+       'major_field_of_studies', 'professional_company_names', 'company_urls',
+       'start_dates', 'end_dates', 'related_skils_in_job', 'positions',
+       'locations', 'responsibilities', '﻿job_position_name',
+       'educationaL_requirements', 'experiencere_requirement',
+       'responsibilities.1', 'skills_required'],
+      dtype='object')
+Numerical Columns: Index(['skills_length'], dtype='object')
+Train Size: (6108, 21)
+Test Size: (1527, 21)
+/usr/local/lib/python3.10/dist-packages/sklearn/utils/_tags.py:354: FutureWarning: The LGBMRegressor or classes from which it inherits use `_get_tags` and `_more_tags`. Please define the `__sklearn_tags__` method, or inherit from `sklearn.base.BaseEstimator` and/or other appropriate mixins such as `sklearn.base.TransformerMixin`, `sklearn.base.ClassifierMixin`, `sklearn.base.RegressorMixin`, and `sklearn.base.OutlierMixin`. From scikit-learn 1.7, not defining `__sklearn_tags__` will raise an error.
+  warnings.warn(
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-10-a9b8291a06e7> in <cell line: 102>()
+    100 # Implement GridSearchCV
+    101 grid_search = GridSearchCV(stacking_model, param_grid, cv=KFold(10), scoring='neg_mean_squared_error', n_jobs=-1)
+--> 102 grid_search.fit(X_train, y_train)
+    103 
+    104 # Best Model from GridSearchCV
+
+4 frames
+/usr/local/lib/python3.10/dist-packages/sklearn/model_selection/_validation.py in _warn_or_raise_about_fit_failures(results, error_score)
+    515                 f"Below are more details about the failures:\n{fit_errors_summary}"
+    516             )
+--> 517             raise ValueError(all_fits_failed_message)
+    518 
+    519         else:
+
+ValueError: 
+All the 640 fits failed.
+It is very likely that your model is misconfigured.
+You can try to debug the error by setting error_score='raise'.
+
+Below are more details about the failures:
+--------------------------------------------------------------------------------
+640 fits failed with the following error:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/model_selection/_validation.py", line 866, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py", line 63, in inner_f
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/ensemble/_stacking.py", line 1063, in fit
+    return super().fit(X, y, **fit_params)
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/base.py", line 1389, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/ensemble/_stacking.py", line 186, in fit
+    names, all_estimators = self._validate_estimators()
+  File "/usr/local/lib/python3.10/dist-packages/sklearn/ensemble/_base.py", line 234, in _validate_estimators
+    raise ValueError(
+ValueError: The estimator Pipeline should be a regressor.

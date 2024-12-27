@@ -9,6 +9,14 @@ import pandas as pd
 
 # Load and Inspect the Dataset
 dataset = pd.read_csv('train.csv')
+
+# Dataset Inspection and Cleaning
+import ast
+
+# Ensure 'skills' column is a list-like structure
+dataset['skills'] = dataset['skills'].fillna('[]').apply(ast.literal_eval)
+dataset['skills_length'] = dataset['skills'].apply(len)
+
 print(dataset.head())  # Inspect the first few rows
 print(dataset.info())  # Check data types and missing values
 
@@ -20,7 +28,14 @@ irrelevant_columns = [
     'certification_providers', 'certification_skills', 'online_links',
     'issue_dates', 'expiry_dates', 'age_requirement'
 ]
-dataset.drop(columns=irrelevant_columns, inplace=True)
+
+# Validate Irrelevant Columns Before Dropping
+# Ensure irrelevant columns exist before dropping
+missing_cols = [col for col in irrelevant_columns if col not in dataset.columns]
+if missing_cols:
+    print(f"Warning: The following columns are missing and cannot be dropped: {missing_cols}")
+dataset.drop(columns=irrelevant_columns, errors='ignore', inplace=True)
+# dataset.drop(columns=irrelevant_columns, inplace=True)
 
 
 # Add Derived Feature
@@ -34,12 +49,19 @@ print(dataset.head())
 #     if dataset[col].isnull().any():
 #         dataset[col].fillna(dataset[col].mode()[0], inplace=True)
 # Fill Missing Values
-for col in dataset.columns:
-    if dataset[col].isnull().any():
-        if dataset[col].dtype == 'object':
-            dataset[col] = dataset[col].fillna(dataset[col].mode()[0])
-        else:
-            dataset[col] = dataset[col].fillna(dataset[col].mean())
+# for col in dataset.columns:
+#     if dataset[col].isnull().any():
+#         if dataset[col].dtype == 'object':
+#             dataset[col] = dataset[col].fillna(dataset[col].mode()[0])
+#         else:
+#             dataset[col] = dataset[col].fillna(dataset[col].mean())
+
+# Consolidate Missing Value Handling
+# Ensure target column has no missing values
+assert target_column in dataset.columns, "Target column is missing!"
+if dataset[target_column].isnull().any():
+    print(f"Filling missing values in target column '{target_column}' with its mean.")
+    dataset[target_column].fillna(dataset[target_column].mean(), inplace=True)
 
 print(dataset.isnull().sum())  # Check remaining missing values
 
@@ -54,6 +76,9 @@ print("Target:", y.head())
 # Preprocess Data
 object_columns = X.select_dtypes(include=['object']).columns
 numerical_columns = X.select_dtypes(include=['number']).columns
+# Plot histograms of numeric features to check for scaling needs
+X_train[numerical_columns].hist(figsize=(10, 8))
+
 print("Object Columns:", object_columns)
 print("Numerical Columns:", numerical_columns)
 
@@ -78,34 +103,68 @@ print("Train Size:", X_train.shape)
 print("Test Size:", X_test.shape)
 
 # Create Base Model
+# Base Model with Preprocessing Pipeline
+# base_model = Pipeline(steps=[
+#     ('preprocessor', preprocessor),
+#     ('classifier', LGBMRegressor(random_state=42))
+# ])
+# base_model.fit(X_train, y_train)
+# y_pred = base_model.predict(X_test)
+# mse = mean_squared_error(y_test, y_pred)
+# print("Mean Squared Error (Base Model):", mse)
+# Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Base Model with Preprocessing Pipeline
 base_model = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('classifier', LGBMRegressor(random_state=42))
 ])
-base_model.fit(X_train, y_train)
 
-y_pred = base_model.predict(X_test)
-mse = mean_squared_error(y_test, y_pred)
-print("Mean Squared Error (Base Model):", mse)
+# Hyperparameter Tuning with GridSearchCV
+param_grid = {
+    'classifier__learning_rate': [0.01, 0.05, 0.1],
+    'classifier__n_estimators': [100, 200, 500],
+    'classifier__num_leaves': [31, 50, 100],
+    'classifier__max_depth': [-1, 10, 20]
+}
+grid_search = GridSearchCV(
+    estimator=base_model,
+    param_grid=param_grid,
+    cv=5,
+    scoring='neg_mean_squared_error',
+    verbose=1,
+    n_jobs=-1
+)
+grid_search.fit(X_train, y_train)
+
+# Evaluate the Best Model
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
+optimized_mse = mean_squared_error(y_test, y_pred)
+print("Optimized Mean Squared Error:", optimized_mse)
 
 
-# Corrected GridSearchCV Block
-# 1. Data Quality Issues
-# Check for Null or NaN Values: 
-print(dataset.isnull().sum())
-# Steps to Resolve the Issue:
-# Check Data Types of Columns:
-numeric_columns = dataset.select_dtypes(include=['number']).columns
-print(numeric_columns)
-# Filter Numeric Columns: Use the numeric columns for .var():
-numeric_data = dataset[numeric_columns]
-print(numeric_data.var())
-# Handle String Columns: 
-dataset['skills_count'] = dataset['skills'].apply(lambda x: len(eval(x)) if pd.notnull(x) else 0)
-# Fill or Remove Missing Data
-dataset.fillna({'skills': '[]'}, inplace=True)
-# Debugging Warnings:
-dataset.loc[:, 'skills'] = dataset['skills'].fillna('[]')
+# Replace GridSearchCV with RandomizedSearchCV for efficiency
+from sklearn.model_selection import RandomizedSearchCV
+
+random_search = RandomizedSearchCV(
+    estimator=base_model,
+    param_distributions=param_grid,
+    n_iter=20,  # Limit number of parameter combinations
+    cv=5,
+    scoring='neg_mean_squared_error',
+    random_state=42,
+    n_jobs=-1
+)
+random_search.fit(X_train, y_train)
+
+# Evaluate Best Model
+best_model = random_search.best_estimator_
+y_pred = best_model.predict(X_test)
+optimized_mse = mean_squared_error(y_test, y_pred)
+print("Optimized Mean Squared Error:", optimized_mse)
+
 
 # Train-Test Split:
 # ...
