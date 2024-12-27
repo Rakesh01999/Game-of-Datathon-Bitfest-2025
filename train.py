@@ -36,3 +36,10 @@ y = dataset[target_column]
 
 print("Features:", X.head())
 print("Target:", y.head())
+
+# Preprocess Data
+object_columns = X.select_dtypes(include=['object']).columns
+numerical_columns = X.select_dtypes(include=['number']).columns
+print("Object Columns:", object_columns)
+print("Numerical Columns:", numerical_columns)
+
